@@ -1,0 +1,68 @@
+create table alumno
+(
+ci int,
+nombre varchar(50),
+apellido varchar(50),
+materia varchar(70)
+) 
+insert into alumno values(1234567,'Gabriel','Choque','calculo,programacion,fisica,algebra,estadistica,logica')
+insert into alumno values(7654321,'Nayla','Callizaya','calculo,administracion,contaduria,alegbra,estadistica')
+insert into alumno values(2357111,'Elmer','Paco','derecho,psicologia,fisica,algebra,estadistica,logica')
+insert into alumno values(2388347,'Ximena','Beltran','biologia,quimica,estadistica,fisioterapia,casosI')
+insert into alumno values(9384723,'Enrique','Mamani','calculo,manejo,operativa,algebra,aduanas,logica')
+
+
+create table alumnoE
+(
+ci int not null primary key,
+nombre varchar(50),
+apellido varchar(50)
+) 
+
+create table materiaE
+(
+id int not null primary key,
+nombreM	 varchar(50)
+) 
+
+create table asignacion
+(
+ci int not null,
+id int not null,
+primary key(ci,id),
+foreign key(ci) references alumnoE,
+foreign key(id) references materiaE
+
+)
+
+insert into alumnoE values(1234567,'Gabriel','Choque')
+insert into alumnoE values(7654321,'Nayla','Callizaya')
+insert into alumnoE values(2357111,'Elmer','Paco')
+
+insert into materiaE values(1,'calculo 1')
+insert into materiaE values(2,'introduccion a la programacion')
+insert into materiaE values(3,'diseño de paginas web')
+insert into materiaE values(4,'algebra')
+insert into materiaE values(5,'taller literatura')
+insert into materiaE values(6,'laboratorio de programacion')
+insert into materiaE values(7,'analisis de computadoras')
+
+insert into asignacion values(1234567,2)
+insert into asignacion values(1234567,4)
+insert into asignacion values(1234567,6)
+insert into asignacion values(7654321,1)
+insert into asignacion values(7654321,3)
+insert into asignacion values(7654321,5)
+insert into asignacion values(2357111,6)
+insert into asignacion values(2357111,7)
+
+select *
+from alumnoE
+select *
+from materiaE
+select *
+from asignacion
+
+select A.nombre,A.apellido,M.nombreM
+from alumnoE A, materiaE M , asignacion S
+where A.ci = S.ci and S.id = M.id 
